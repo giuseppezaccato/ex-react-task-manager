@@ -1,5 +1,6 @@
 
 import { BrowserRouter, Navigate, Routes, Route, } from "react-router-dom"
+import { GlobalProvider } from "./contexts/GlobalContext"
 import TaskList from "./pages/TaskList"
 import AddTask from "./pages/AddTask"
 import DefaultLayout from "./layouts/DefaultLayout"
@@ -9,16 +10,20 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes >
-        <Route element={<DefaultLayout />}>
+      {/* globalContext Provider wrapper */}
+      <GlobalProvider>
 
-          <Route path="/" element={<TaskList />} />
-          <Route path="/tasks" element={<Navigate to="/" replace />} /> //* rendere pulito l'url
-          <Route path="/add" element={<AddTask />} />
+        <Routes >
+          {/* defaultLayout Wrapper */}
+          <Route element={<DefaultLayout />}>
+            {/* rotte */}
+            <Route path="/" element={<TaskList />} />
+            <Route path="/tasks" element={<Navigate to="/" replace />} /> //* rendere pulito l'url
+            <Route path="/add" element={<AddTask />} />
+          </Route>
+        </Routes>
 
-
-        </Route>
-      </Routes>
+      </GlobalProvider>
 
     </BrowserRouter>
   )

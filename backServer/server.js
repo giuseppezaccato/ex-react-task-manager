@@ -1,6 +1,6 @@
 import express from "express";
 import fs from "fs/promises";
-import {existsSync, readFileSync} from "fs";
+import { existsSync, readFileSync } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 const DATA_FILE = path.join(__dirname, "tasks.json");
 
 const app = express();
-const PORT = 3001;
+const PORT = 3002;
 
 // Middleware
 app.use(
@@ -95,7 +95,7 @@ app.get("/tasks", (req, res) => {
 // 📌 **POST /tasks - Aggiungi un nuovo task**
 app.post("/tasks", async (req, res) => {
     const newTask = req.body;
-    
+
     // Validazione
     const errors = validateTask(newTask);
     if (errors.length > 0) {
@@ -152,7 +152,7 @@ app.delete("/tasks/:id", async (req, res) => {
 // **Se il file JSON non esiste, crearlo con dati iniziali**
 if (!existsSync(DATA_FILE) || readFileSync(DATA_FILE, "utf-8").trim() === "") {
     console.log("⚡ File tasks.json non trovato o vuoto, creazione con dati iniziali...");
-    
+
     const getRandomDateInLastWeek = () => {
         const now = new Date();
         const pastDate = new Date();
@@ -171,7 +171,7 @@ if (!existsSync(DATA_FILE) || readFileSync(DATA_FILE, "utf-8").trim() === "") {
 
     await saveTasks();
     console.log("✅ Dati iniziali creati con successo.");
-}else{
+} else {
     // 📌 **Caricamento dei dati iniziali all'avvio del server**
     await loadTasks();
 }
