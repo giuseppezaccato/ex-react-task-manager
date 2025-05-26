@@ -11,20 +11,19 @@ function App() {
   return (
     <BrowserRouter>
       {/* globalContext Provider wrapper */}
-      <GlobalProvider>
+      <GlobalProvider >
 
         <Routes >
           {/* defaultLayout Wrapper */}
           <Route element={<DefaultLayout />}>
             {/* rotte */}
             <Route path="/" element={<TaskList />} />
-            <Route path="/tasks" element={<Navigate to="/" replace />} /> //* rendere pulito l'url
+            <Route path="/tasks" element={<Navigate to="/" replace />} />
             <Route path="/add" element={<AddTask />} />
           </Route>
         </Routes>
 
-      </GlobalProvider>
-
+      </GlobalProvider >
     </BrowserRouter>
   )
 }
