@@ -1,3 +1,7 @@
+//! RICORDA
+//? Un custom hook è solo logica JavaScript, non markup, quindi va in `.js` (o `.ts`).
+//? Usa `.jsx` solo per componenti che restituiscono JSX.
+
 import { useEffect, useState } from "react";
 const { VITE_API_URL } = import.meta.env
 
@@ -40,7 +44,6 @@ export default function useTask() {
     const updateTask = (updTask) => {
         //...operazioni
     }
-
 
 
     //* destructuring di quello che voglio che la funzione ritorni (comprese le operazioni)

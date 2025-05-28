@@ -1,4 +1,3 @@
-
 import { useContext } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 import TaskRow from "../components/TaskRow"
@@ -16,14 +15,14 @@ import TaskRow from "../components/TaskRow"
 export default function TaskList() {
 
     const { tasks } = useContext(GlobalContext)
-    console.log(tasks) //* controllo stampa dati da api req!
+    // console.log(tasks) //* controllo stampa dati da api req!
 
     return (
 
         <table>
             <thead>
                 <tr>
-                    <th> <strong> Nome </strong> </th>
+                    <th> <strong> Nome Task </strong> </th>
                     <th> <strong> Stato </strong> </th>
                     <th> <strong> Data Creazione </strong> </th>
                 </tr>
