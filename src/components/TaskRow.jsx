@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 //? avrei potuto anche destrutturare { memo} from 'react' 
 //? ==> import {memo} from 'react'
@@ -6,15 +7,15 @@ import React from "react";
 
 const TaskRow = ({ task }) => {
 
-    const { title, status } = task; // destrutturo in questo modo
+    // const { title, status, id, createdAt } = task; //? destrutturo in questo modo
 
     // converto la stringa status nella classe creata nel css
-    const classStatus = status.replace(" ", "").toLowerCase();
+    const classStatus = task.status.replace(" ", "").toLowerCase();
 
     return (
         <tr>
-            <td>{title}</td>
-            <td className={classStatus}>{status}</td>
+            <td><Link to={`/task/${task.id}`}> {task.title} </Link></td>
+            <td className={classStatus}>{task.status}</td>
             {/* creo delle classi con lo stesso nome dello status in modo da dinamicizzarne il colore */}
             <td>
                 {new Date(task.createdAt).toLocaleDateString()}

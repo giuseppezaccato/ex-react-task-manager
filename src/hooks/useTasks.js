@@ -59,7 +59,7 @@ export default function useTask() {
     }
 
     const removeTask = (taskId) => {
-        //...operazioni
+        console.log(`task eliminata`)
     }
     const updateTask = (updTask) => {
         //...operazioni

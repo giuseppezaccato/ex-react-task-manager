@@ -33,7 +33,7 @@ export default function AddTask() {
         return ""
     }, [title])
 
-    //funzione handleSubmit che riceve l'evento
+    //* funzione handleSubmit che riceve l'evento
     const letsGo = async (e) => {
         e.preventDefault()
 
@@ -46,16 +46,18 @@ export default function AddTask() {
             status: status
         }
 
+        //* Eseguire la funzione addTask di useTasks(), passando l’oggetto con title, description e status.
         try {
-            //? Eseguire la funzione addTask di useTasks(), passando l’oggetto con title, description e status.
             await addTask(newTask);
-            alert("Task aggiunta con successo!")
+
             //? Se la funzione esegue correttamente l'operazione:
             //? Mostrare un alert di conferma dell’avvenuta creazione della task.
-            //? Resettare il form.
+            alert("Task aggiunta con successo!")
+
+            //? Resettare il form(...sia controllato che non...)
             setTitle("");
-            descriptionRef.current.value = "";
-            statusRef.current.value = "";
+            descriptionRef.current.value = ""; //! status e description NON sono riassegnabili
+            statusRef.current.value = "";      //! OCCHIO AI CONST!
 
         } catch (error) {
             //? Se la funzione lancia un errore:

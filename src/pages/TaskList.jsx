@@ -15,7 +15,7 @@ import TaskRow from "../components/TaskRow"
 export default function TaskList() {
 
     const { tasks } = useContext(GlobalContext)
-    // console.log(tasks) //* controllo stampa dati da api req!
+    console.log(tasks) //* controllo stampa dati da api req!
 
     return (
 
