@@ -34,10 +34,30 @@ export default function useTask() {
     }, []);
 
 
-    //* operazioni per ora vuote
-    const addTask = (newTask) => {
-        //...operazioni
+    //* OPERAZIONI TASK 
+    //todo (qui eventualmente poi, applicando le dovute modifiche, lavorare per creare il reducer dello useReducer)
+
+    const addTask = async (newTask) => {
+        const res = await fetch(`${VITE_API_URL}/tasks`, {
+            method: 'POST',//* metodologia di req
+            headers: { 'Content-Type': 'application/json' },//* Specifica il tipo di contenuto inviato nel corpo della richiesta (in questo caso, JSON)
+            body: JSON.stringify(newTask),//* Converte l'oggetto newTask in una stringa JSON e la invia come corpo della richiesta
+        });
+
+        //a questo punto mi serve il "data" quindi dovrei fare...
+        // const data = await res.json();//* che destrutturando diventa
+        const { success, message, task } = await res.json();
+
+        //* La funzione addTask deve controllare il valore di success nella risposta:
+
+        //? Se success è false, lanciare un errore con message come testo.
+        if (!success) throw new Error(message);
+
+        //? Se success è true, aggiornare lo stato globale aggiungendo la nuova task.
+        setTasks(prev => [...prev, task])
+
     }
+
     const removeTask = (taskId) => {
         //...operazioni
     }

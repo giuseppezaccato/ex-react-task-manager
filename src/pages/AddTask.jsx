@@ -1,8 +1,11 @@
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState, useContext } from 'react'
+import { GlobalContext } from '../contexts/GlobalContext';
 
 const symbols = "!@#$%^&*()-_=+[]{}|;:'\\\",.<>?/`~";
 
 export default function AddTask() {
+    const { addTask } = useContext(GlobalContext) //derivante dallo spread di dataTasks nel GlobalContext
+
 
 
     //inizializzo variabili form
@@ -31,19 +34,35 @@ export default function AddTask() {
     }, [title])
 
     //funzione handleSubmit che riceve l'evento
-    const letsGo = (e) => {
+    const letsGo = async (e) => {
         e.preventDefault()
 
         const description = descriptionRef.current.value
         const status = statusRef.current.value
 
-
         const newTask = {
-            nome: { title },
-            descrizione: { description },
-            stato: { status }
+            title: title.trim(),
+            description: description,
+            status: status
         }
-        console.log(newTask)
+
+        try {
+            //? Eseguire la funzione addTask di useTasks(), passando l’oggetto con title, description e status.
+            await addTask(newTask);
+            alert("Task aggiunta con successo!")
+            //? Se la funzione esegue correttamente l'operazione:
+            //? Mostrare un alert di conferma dell’avvenuta creazione della task.
+            //? Resettare il form.
+            setTitle("");
+            descriptionRef.current.value = "";
+            statusRef.current.value = "";
+
+        } catch (error) {
+            //? Se la funzione lancia un errore:
+            //? Mostrare un alert con il messaggio di errore ricevuto.
+            // console.error(error)
+            alert(error.message)
+        }
     }
 
 
