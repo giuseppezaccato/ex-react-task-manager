@@ -1,11 +1,13 @@
 import { useMemo, useRef, useState, useContext } from 'react'
 import { GlobalContext } from '../contexts/GlobalContext';
+import { useNavigate } from 'react-router-dom';
+
 
 const symbols = "!@#$%^&*()-_=+[]{}|;:'\\\",.<>?/`~";
 
 export default function AddTask() {
     const { addTask } = useContext(GlobalContext) //derivante dallo spread di dataTasks nel GlobalContext
-
+    const navigate = useNavigate()
 
 
     //inizializzo variabili form
@@ -65,6 +67,8 @@ export default function AddTask() {
             // console.error(error)
             alert(error.message)
         }
+
+        navigate("/")
     }
 
 
