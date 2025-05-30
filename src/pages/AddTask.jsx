@@ -71,6 +71,7 @@ export default function AddTask() {
     return (
         <form
             onSubmit={letsGo}
+            className='form-grid'
         >
 
             {/* Title */}

@@ -69,3 +69,14 @@ td.done {
   background-color: hsl(145, 63%, 69%);
   /* Verde per lo stato 'Done' */
 }
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+
+
+  label {
+    display: grid
+  }
+}

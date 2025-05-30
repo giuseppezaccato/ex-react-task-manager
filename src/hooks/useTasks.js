@@ -7,7 +7,7 @@ const { VITE_API_URL } = import.meta.env
 
 export default function useTask() {
 
-    const [tasks, setTasks] = useState();
+    const [tasks, setTasks] = useState([]);//fix va inizializzato come array OVVIAMENTE -.-''
 
     //* versione async/await con useEffect annesso
     //! (ricorda anche che funzione async NON puo stare dentro a uno useEffect, ma l'invocazione di una funzione async SI)
@@ -58,9 +58,23 @@ export default function useTask() {
 
     }
 
-    const removeTask = (taskId) => {
-        console.log(`task eliminata`)
+    const removeTask = async (taskId) => {
+
+        const res = await fetch(`${VITE_API_URL}/tasks/${taskId}`, { method: 'DELETE' });
+
+        const { success, message } = await res.json();
+
+        //* La funzione removeTask deve controllare il valore di success nella risposta:
+
+        //? Se success è false, lanciare un errore con message come testo.
+        if (!success) throw new Error(message);
+
+        //? Se success è true, aggiornare lo stato globale aggiungendo la nuova task.
+        setTasks(prev => prev.filter((t) => t.id !== taskId))
+
     }
+
+
     const updateTask = (updTask) => {
         //...operazioni
     }
