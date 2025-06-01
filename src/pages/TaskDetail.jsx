@@ -2,19 +2,23 @@ import { useParams, useNavigate } from "react-router-dom"
 import { useContext, useState } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 import Modal from "../components/Modal"
+import EditTaskModal from "../components/EditTaskModal"
 
 
 export default function TaskDetail() {
     const { id } = useParams() //ritorna una stringa NON un numero
     const navigate = useNavigate()
-    const { tasks, removeTask } = useContext(GlobalContext)
+    const { tasks, removeTask, updateTask } = useContext(GlobalContext)
 
 
     //cerco la task con quell'id!
     const task = tasks.find(t => t.id === parseInt(id))
 
-    //visualizzazione Modale
-    const [showModal, setShowModal] = useState(false)
+    //visualizzazione Modale Delete
+    const [showDelModal, setShowDelModal] = useState(false)
+
+    //visualizzazione Modale Edit
+    const [showEditModal, setShowEditModal] = useState(false)
 
     // !task && <h2>Task non trovata!</h2>
     if (!task) {
@@ -40,6 +44,20 @@ export default function TaskDetail() {
         }
     }
 
+    // Funzione per gestire la modifica della task
+    const handleUpd = async (updTask) => {
+        try {
+            //todo Modifica la task tramite la funzione dal context
+            await updateTask(updTask)
+
+            //todo Chiude la Modale Edit
+            setShowEditModal(false)
+
+        } catch (error) {
+            console.error(error)
+            alert(error.message)
+        }
+    }
 
     return (
 
@@ -52,18 +70,26 @@ export default function TaskDetail() {
             <button
                 //fix onClick={handleDel} l'eliminazione ora la si demanda alla Modale 
                 //? quindi questo onClick la aprirà e il suo onConfirm farà quello che sta facendo ora questo onClick
-                onClick={() => setShowModal(true)}
-
+                onClick={() => setShowDelModal(true)}
             >Elimina Task</button>
+            <button onClick={() => setShowEditModal(true)} >Modifica Task</button>
 
-            {/* Modal */}
+            {/* Modale Del */}
             <Modal
                 title="Elimina Task"
-                content={<p>"Sei Sicuro?"</p>}
-                show={showModal}
-                onClose={() => setShowModal(false)}
+                content={<h3>"Sei Sicuro?"</h3>}
+                show={showDelModal}
+                onClose={() => setShowDelModal(false)}
                 onConfirm={handleDel}
                 confirmText="Elimina"
+            />
+
+            {/* Modale Edit */}
+            <EditTaskModal
+                show={showEditModal}
+                onClose={() => setShowEditModal(false)}
+                onSave={handleUpd}
+                task={task}
             />
         </div>
     )

@@ -83,28 +83,167 @@ td.done {
   }
 }
 
+/* Stile per la modale */
 .modalContainer {
   position: fixed;
-  height: 100%;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-color: rgba(210, 210, 210, 0.5);
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Sfondo semi-trasparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  /* Assicura che la modale sia sopra altri elementi */
+}
 
-  .modal {
-    position: absolute;
-    padding: 1rem;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid black;
-    border-radius: 5px;
+.modal {
+  background-color: #fff;
+  /* Sfondo bianco */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Ombra per dare profondità */
+  width: 90%;
+  /* Adattabile a schermi piccoli */
+  max-width: 500px;
+  /* Larghezza massima */
+  text-align: center;
+}
 
-    .modalBtns button:first-child {
-      background-color: lightgreen;
-    }
+.modal h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}
 
-    .modalBtns button:last-child {
-      background-color: orangered;
-    }
+.modal form {
+  display: grid;
+  gap: 1rem;
+}
 
-  }
+.modal label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 1rem;
+  color: #555;
+}
+
+.modal input,
+.modal textarea,
+.modal select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.modal textarea {
+  resize: vertical;
+  /* Permette di ridimensionare solo verticalmente */
+}
+
+.modalBtns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.modalBtns button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modalBtns button:first-child {
+  background-color: lightgreen;
+  color: #fff;
+}
+
+.modalBtns button:first-child:hover {
+  background-color: green;
+}
+
+.modalBtns button:last-child {
+  background-color: orangered;
+  color: #fff;
+}
+
+.modalBtns button:last-child:hover {
+  background-color: red;
+}
+
+/* Stile per la pagina AddTask */
+.addTaskContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.05);
+  /* Sfondo leggero */
+}
+
+.addTaskForm {
+  background-color: #fff;
+  /* Sfondo bianco */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Ombra per dare profondità */
+  width: 90%;
+  /* Adattabile a schermi piccoli */
+  max-width: 500px;
+  /* Larghezza massima */
+  text-align: center;
+}
+
+.addTaskForm label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.addTaskForm input,
+.addTaskForm textarea,
+.addTaskForm select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.addTaskForm textarea {
+  resize: vertical;
+  /* Permette di ridimensionare solo verticalmente */
+}
+
+.addTaskForm button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: lightgreen;
+  color: #fff;
+  transition: background-color 0.3s;
+  margin-top: 1rem;
+}
+
+.addTaskForm button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.addTaskForm button:hover:not(:disabled) {
+  background-color: green;
 }

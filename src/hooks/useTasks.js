@@ -39,9 +39,9 @@ export default function useTask() {
 
     const addTask = async (newTask) => {
         const res = await fetch(`${VITE_API_URL}/tasks`, {
-            method: 'POST',//* metodologia di req
+            method: 'POST',                                 //* metodologia di req
             headers: { 'Content-Type': 'application/json' },//* Specifica il tipo di contenuto inviato nel corpo della richiesta (in questo caso, JSON)
-            body: JSON.stringify(newTask),//* Converte l'oggetto newTask in una stringa JSON e la invia come corpo della richiesta
+            body: JSON.stringify(newTask),                  //* Converte l'oggetto newTask in una stringa JSON e la invia come corpo della richiesta
         });
 
         //a questo punto mi serve il "data" quindi dovrei fare...
@@ -75,8 +75,25 @@ export default function useTask() {
     }
 
 
-    const updateTask = (updTask) => {
-        //...operazioni
+    const updateTask = async (updTask) => {
+        const res = await fetch(`${VITE_API_URL}/tasks/${updTask.id}`, {
+            method: 'PUT',                                  //* metodologia di req
+            headers: { 'Content-Type': 'application/json' },//* Specifica il tipo di contenuto inviato nel corpo della richiesta (in questo caso, JSON)
+            body: JSON.stringify(updTask),                  //* Converte l'oggetto newTask in una stringa JSON e la invia come corpo della richiesta
+        });
+
+        const { success, message, task } = await res.json();
+
+        if (!success) throw new Error(message);
+
+        setTasks(prev => prev.map(t =>
+            t.id === task.id ? task //* se true sostituisco con task aggiornato
+                : t))               //* se false mantengo quello gia esistente
+
+        //ternary dove chiedo se l'id della task modificata(task) coincide con quello dell'elemento nel map t
+        //? Se gli ID corrispondono, sostituisce la vecchia versione della task con la nuova versione aggiornata.
+        //? Se gli ID non corrispondono, mantiene la task così com'è.
+
     }
 
 

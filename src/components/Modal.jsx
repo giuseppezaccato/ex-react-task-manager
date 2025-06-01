@@ -2,12 +2,12 @@ import { createPortal } from "react-dom"
 
 
 export default function Modal({
-    title,                  //? titolo della modale
-    content,                //? contenuto principale della modale
-    show,                   //? stato booleano che mostra la modale
-    onClose,                //? funzione per chiudere la modale.
-    onConfirm,              //? funzione eseguita al click del bottone di conferma.
-    confirmText = "Conferma"  //? ( default "Conferma")testo del bottone di conferma.
+    title,                      //? titolo della modale
+    content,                    //? contenuto principale della modale
+    show,                       //? stato booleano che mostra la modale
+    onClose,                    //? funzione per chiudere la modale.
+    onConfirm,                  //? funzione eseguita al click del bottone di conferma.
+    confirmText = "Conferma"    //? ( default "Conferma")testo del bottone di conferma.
 }) {
     if (!show) return null
 
