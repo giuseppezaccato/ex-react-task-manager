@@ -36,7 +36,7 @@ export default function AddTask() {
     }, [title])
 
     //* funzione handleSubmit che riceve l'evento
-    const letsGo = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         const description = descriptionRef.current.value
@@ -74,7 +74,7 @@ export default function AddTask() {
 
     return (
         <form
-            onSubmit={letsGo}
+            onSubmit={handleSubmit}
             className='form-grid'
         >
 

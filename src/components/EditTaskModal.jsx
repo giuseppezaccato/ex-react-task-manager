@@ -71,7 +71,7 @@ export default function EditTaskModal({
                     </label>
                 </form>
             }
-            confirmText="Salva"
+            confirmText="Modifica"
             show={show}
             onClose={onClose}
 
