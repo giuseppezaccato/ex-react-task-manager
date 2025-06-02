@@ -28,7 +28,7 @@ thead {
 }
 
 ul {
-  background-color: orange;
+  background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +36,7 @@ ul {
   font-size: 1.5rem;
   font-weight: bold;
   list-style: none;
-  padding: 0;
+  padding: 1rem;
   margin: 0;
   display: flex;
   gap: 1rem;
@@ -246,4 +246,22 @@ td.done {
 
 .addTaskForm button:hover:not(:disabled) {
   background-color: green;
+}
+
+.center-input {
+  text-align: center;
+  font-size: larger;
+  padding: 1em;
+}
+
+.action-btns {
+  display: flex;
+  justify-content: space-around;
+
+  button {
+    background-color: lightcyan;
+    border-radius: 5px;
+    padding: 8px;
+    border: 1px solid gray;
+  }
 }

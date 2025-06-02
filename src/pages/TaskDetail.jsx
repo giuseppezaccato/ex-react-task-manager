@@ -67,12 +67,15 @@ export default function TaskDetail() {
             <h4> <strong> Descrizione:</strong> {task.description} </h4>
             <h4> <strong> Stato:</strong> {task.status} </h4>
             <h4> <strong> Data di Creazione:</strong> {new Date(task.createdAt).toLocaleDateString()} </h4>
-            <button
-                //fix onClick={handleDel} l'eliminazione ora la si demanda alla Modale 
-                //? quindi questo onClick la aprirà e il suo onConfirm farà quello che sta facendo ora questo onClick
-                onClick={() => setShowDelModal(true)}
-            >Elimina Task</button>
-            <button onClick={() => setShowEditModal(true)} >Modifica Task</button>
+            <div className="action-btns">
+                <button
+                    //fix onClick={handleDel} l'eliminazione ora la si demanda alla Modale 
+                    //? quindi questo onClick la aprirà e il suo onConfirm farà quello che sta facendo ora questo onClick
+                    onClick={() => setShowDelModal(true)
+                    }
+                >Elimina Task</button>
+                <button onClick={() => setShowEditModal(true)} >Modifica Task</button>
+            </div>
 
             {/* Modale Del */}
             <Modal
